@@ -56,6 +56,15 @@ ball.shape("circle")
 ball.speed(5)
 ball.penup()
 
+#scoring
+pen=turtle.Turtle()
+pen.color("white")
+pen.speed(0)
+pen.penup()
+pen.hideturtle()
+pen.goto(0,260)
+pen.write("Player A: 0  player B: 0", align="center", font=("Courier", 24, "normal"))
+
 
 # while True:
 
@@ -69,6 +78,9 @@ wn.onkeypress(paddle_b_down,"Down")
 
 ball.dy=-0.2
 ball.dx=0.2
+
+score_a=0
+score_b=0
 
 while True:
     wn.update()
@@ -87,11 +99,17 @@ while True:
         ball.goto(0, 0)
         ball.dx *= -1
         ball.dy *= -1
+        score_b+=1
+        pen.clear()
+        pen.write("Player A: {}  player B: {}".format(score_a,score_b), align="center", font=("Courier", 24, "normal"))
 
     if ball.xcor() > 390:
         ball.goto(0, 0)
         ball.dx *= -1
         ball.dy *= -1
+        score_a+=1
+        pen.clear()
+        pen.write("Player A: {}  player B: {}".format(score_a, score_b), align="center", font=("Courier", 24, "normal"))
 
 
     if ball.xcor() >340 and ball.xcor() <350 and (ball.ycor() < pad_b.ycor()+40  and ball.ycor() > pad_b.ycor()-40):
